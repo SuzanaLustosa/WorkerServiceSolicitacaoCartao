@@ -17,8 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Adapter\SQL\" />
-    <Folder Include="Adapter\RabbitMQ\" />
     <Folder Include="Infra\" />
   </ItemGroup>
 </Project>
