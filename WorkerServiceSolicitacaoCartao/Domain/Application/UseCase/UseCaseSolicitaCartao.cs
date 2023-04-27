@@ -1,28 +1,31 @@
-﻿using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
+﻿
+using RabbitMQ.Client;
+using System.Text.Json;
+using WorkerServiceSolicitacaoCartao.Adapter.SQL.Connection;
+using WorkerServiceSolicitacaoCartao.Adapter.SQL.Repository.Interface;
+using WorkerServiceSolicitacaoCartao.Adapter.SQL.Repository.Services;
 using WorkerServiceSolicitacaoCartao.Domain.Core.Interfaces;
-using WorkerServiceSolicitacaoCartao.Domain.Core.Interfaces.Adappters;
+using WorkerServiceSolicitacaoCartao.Domain.Core.ValueObjects;
 
 namespace WorkerServiceSolicitacaoCartao.Domain.Application.UseCase;
 
 public class UseCaseSolicitaCartao : IUseCaseSolicitaCartao
 {
-    private IRConsumer _rabbit;
-
-    public UseCaseSolicitaCartao(IRConsumer rabbit)
+    private IGerarCartaoRepository _repository;
+    private IUseCaseGerarCartao _UseCaseGerarCartao;
+    public UseCaseSolicitaCartao(IGerarCartaoRepository gerarCartaoRepository, IUseCaseGerarCartao useCaseGerarCartao)
     {
-        _rabbit= rabbit;
+        _repository = gerarCartaoRepository;
+        _UseCaseGerarCartao = useCaseGerarCartao;
     }
-    public Task Executar()
-    { 
-        var rabbit = _rabbit.RecebendoMensagemRabbit();
+    public Task Executar(IModel channel, ulong deliverTag, string message)
+    {
+        var dadosFila = JsonSerializer.Deserialize<DadosRecebidosFila>(message);
+        Console.WriteLine(dadosFila);
+        var dadosGerados = _UseCaseGerarCartao.DadosCartao();
 
+        _repository.GerarCartaoNoDb(dadosGerados,dadosFila);
+        channel.BasicAck(deliverTag, false);
         return Task.CompletedTask;
     }
 }

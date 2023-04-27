@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="RabbitMQ.Client" Version="6.5.0" />
@@ -17,6 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infra\" />
+    <Folder Include="Domain\Core\Interfaces\Adappters\" />
   </ItemGroup>
 </Project>

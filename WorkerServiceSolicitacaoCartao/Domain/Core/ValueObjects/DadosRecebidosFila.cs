@@ -7,20 +7,14 @@ using System.Threading.Tasks;
 
 namespace WorkerServiceSolicitacaoCartao.Domain.Core.ValueObjects
 {
-    public class PrimeiroCartao
+    public class DadosRecebidosFila
     {
-        public Cartao cartao { get; set; }
-        public string Id { get; set; }
-        public string SenhaRef { get; set; }
+        public IdCartao cartao { get; set; }
         public string Nome { get; set; }
         public string CPF { get; set; }
-        public string NumeroPan { get; set; }
-        public string Cvv { get; set; }
-        public float Limite { get; set; }
-        public string Status { get; set; }
     }
 
-    public class Cartao
+    public class IdCartao
     {
         public string Id { get; set; }
     }

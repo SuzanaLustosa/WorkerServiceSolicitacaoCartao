@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkerServiceSolicitacaoCartao.Domain.Core.ValueObjects;
 
 namespace WorkerServiceSolicitacaoCartao.Domain.Core.Interfaces
 {
     public interface IUseCaseGerarCartao
     {
-        public string GerarPan();
-        public string GerarCvv();
-        public string GerarLimite();
+        public DadosGerados DadosCartao();
     }
 }
