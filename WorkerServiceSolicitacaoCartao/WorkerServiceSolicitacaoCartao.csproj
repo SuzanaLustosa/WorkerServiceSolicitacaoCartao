@@ -5,7 +5,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-WorkerServiceSolicitacaoCartao-b0c0121b-8863-4544-bb29-b4a489bfc6c0</UserSecretsId>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <AssemblyName>WorkerService-SolicitarCartao</AssemblyName>
+    <RootNamespace>WorkerServiceSolicitacaoCartao</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
